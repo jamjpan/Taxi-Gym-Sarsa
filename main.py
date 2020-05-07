@@ -65,6 +65,7 @@ def train():
 def test():
     state = env.reset()
     done = False
+    total = 0
 
     while not done:
         os.system("clear")
@@ -72,8 +73,9 @@ def test():
         time.sleep(0.5)
         action = max(Q_s_a[state], key=Q_s_a[state].get)
         state, reward, done, info = env.step(action)
+        total += reward
 
-    print("Test finished with reward={}".format(reward))
+    print("Test finished with return={}".format(total))
 
 ################################################################################
 env = gym.make('Taxi-v3')
